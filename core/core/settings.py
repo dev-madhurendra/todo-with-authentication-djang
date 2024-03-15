@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'rest_framework_swagger',
+    'drf_yasg',
 ]
 
 EXTERNAL_APPS = [
@@ -139,3 +141,35 @@ CORS_ALLOW_CREDENTIALS = True
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    'SCHEMA_PATH_PREFIX': r'/api/v1',
+    'DEFAULT_GENERATOR_CLASS': 'drf_spectacular.generators.SchemaGenerator',
+    # 'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
+    # 'COMPONENT_SPLIT_PATCH': True,
+    # 'COMPONENT_SPLIT_REQUEST': True,
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "displayRequestDuration": True
+    },
+    # 'UPLOADED_FILES_USE_URL': True,
+    # 'TITLE': 'Django-Pytest-Sonarqube - Blog API',
+    # 'DESCRIPTION': 'A simple API setup with Django, Pytest & Sonarqube',
+    # 'VERSION': '1.0.0',
+    # 'LICENCE': {'name': 'BSD License'},
+    # 'CONTACT': {'name': 'Ridwan Ray', 'email': 'ridwanray.com'},
+    # #OAUTH2 SPEC
+    # 'OAUTH2_FLOWS': [],
+    # 'OAUTH2_AUTHORIZATION_URL': None,
+    # 'OAUTH2_TOKEN_URL': None,
+    # 'OAUTH2_REFRESH_URL': None,
+    # 'OAUTH2_SCOPES': None,
+}

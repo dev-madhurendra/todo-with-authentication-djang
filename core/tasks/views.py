@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from tasks.utils import check_authentication
+from django.shortcuts import render
 from .models import Task
 from .serializer import TaskSerializer
 
@@ -49,3 +50,12 @@ class TaskView(APIView):
             return Response({'message': 'Task deleted successfully'}, status=204)
         return Response({"message": "Task not found"}, status=404)
 
+
+def product_list(request):
+    products = [
+        {'name': 'Product 1', 'price': 10.99, 'description': 'Description for Product 1'},
+        {'name': 'Product 2', 'price': 20.49, 'description': 'Description for Product 2'},
+        {'name': 'Product 3', 'price': 15.99, 'description': 'Description for Product 3'},
+    ]
+    
+    return render(request, 'tasks/product_list.html', {'products': products})
